@@ -5,6 +5,19 @@ import cors from 'cors';
 const app = express()
 const server = http.createServer(app)
 
+const corsOptions = {
+    origin: [
+        'http://localhost:8081',
+        'exp://172.25.3.40:8081',
+        'http://localhost:19006',
+        'exp://localhost:19000',
+        'http://localhost:3000'
+    ],
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
+
 app.get('/health', (req, res) => {
     res.sendStatus(200)
 })
