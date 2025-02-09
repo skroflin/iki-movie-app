@@ -18,11 +18,11 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <ThemedText type="title" style={styles.title}>Moj 13. razlog zašto</ThemedText>
+        {/* <HelloWave /> */}
       </ThemedView>
       <ThemedView>
-          <MovieList/>
+        <MovieList/>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -30,10 +30,13 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    textAlign: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+  },
+  title: {
+    fontSize: 50,
+    fontStyle: "italic",
   },
   stepContainer: {
     gap: 8,

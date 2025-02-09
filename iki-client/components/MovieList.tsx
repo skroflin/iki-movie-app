@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import movieService from '../services/movieService';
-import { Movie } from '../types/movie';
+import React, { useEffect, useState } from "react";
+import { Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import movieService from "@/services/movieService";
+import { Movie } from "@/types/movie";
+import { useRouter } from "expo-router";
 
 export default function MovieList() {
+  const router = useRouter();
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -11,15 +13,17 @@ export default function MovieList() {
       const movieData = await movieService.getAllMovies();
       setMovies(movieData);
     };
-    
     fetchMovies();
   }, []);
 
   const renderMovie = ({ item }: { item: Movie }) => (
-    <View style={{ padding: 10, borderBottomWidth: 1 }}>
-      <Text><h1>{item.series_title}</h1></Text>
-      <Text><h2>Year: {item.released_year}</h2></Text>
-    </View>
+    <TouchableOpacity
+      style={styles.movieItem}
+      onPress={() => router.push(`/movies/${item.id}` as any)}
+    >
+      <Text style={styles.title}>{item.series_title}</Text>
+      <Text style={styles.subtitle}>Year: {item.released_year}</Text>
+    </TouchableOpacity>
   );
 
   return (
@@ -30,3 +34,18 @@ export default function MovieList() {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  movieItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "gray",
+  },
+});
