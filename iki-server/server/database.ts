@@ -5,9 +5,9 @@ let POOL_INSTANCE: Pool | undefined
 async function getPool(): Promise<Pool> {
     if (POOL_INSTANCE) return POOL_INSTANCE
     POOL_INSTANCE = new Pool({
-        user: 'skroflin',
+        user: 'postgres',
         host: 'localhost',
-        password: '8008135',
+        password: 'password',
         database: 'movies',
         port: 5432
     })

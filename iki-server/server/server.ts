@@ -11,7 +11,10 @@ const corsOptions = {
         'exp://172.25.3.40:8081',
         'http://localhost:19006',
         'exp://localhost:19000',
-        'http://localhost:3000'
+        'http://localhost:3000',
+        'http://10.0.2.2:3003',
+        'http://10.0.2.2:19000',
+        'http://10.0.2.2:8081'
     ],
     optionsSuccessStatus: 200
 }
@@ -34,6 +37,6 @@ app.use('/api/movies', require('./movies/routes'))
 
 const PORT = process.env.PORT || 3003
 
-server.listen(PORT, () => {
+server.listen(Number(PORT), '0.0.0.0', () => {
     console.log(`Server is running on port: ${PORT}`)
 })
